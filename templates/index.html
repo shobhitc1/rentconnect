@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rent Connect - Owner</title>
+</head>
+<body>
+  <h2>Welcome, Owner</h2>
+
+  {% if posted %}
+    <p style="color: green;"><strong>Listing posted successfully!</strong></p>
+    <a href="/owner">Post New Listing</a><br><br>
+    <a href="/logout">Logout</a>
+  {% else %}
+    <h1>📝 Post New Listing</h1>
+    <form action="/post" method="post">
+      <input type="text" name="name" placeholder="Shop or Room Name" required><br><br>
+      <input type="text" name="address" placeholder="Address" required><br><br>
+      <input type="text" name="rent" placeholder="Rent per month" required><br><br>
+      <input type="text" name="contact" placeholder="Contact info" required><br><br>
+      <button type="submit">Post</button>
+    </form>
+    <br>
+    <a href="/logout">Logout</a>
+  {% endif %}
+
+  {% if listings %}
+    <hr>
+    <h2>Your Posted Listings:</h2>
+    <ul>
+      {% for item in listings %}
+        <li>
+          <strong>{{ item.name }}</strong><br>
+          {{ item.address }}<br>
+          ₹{{ item.rent }}<br>
+          Contact: {{ item.contact }}<br><br>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</body>
+</html>

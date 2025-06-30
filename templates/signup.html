@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up - Rent Connect</title>
+</head>
+<body>
+  <h1>Sign Up</h1>
+
+  <form action="/signup" method="post">
+    <label>Username:</label><br>
+    <input type="text" name="username" required><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" name="password" required><br><br>
+
+    <label>Role:</label><br>
+    <select name="role" required>
+      <option value="owner">Owner</option>
+      <option value="buyer">Buyer</option>
+    </select><br><br>
+
+    <button type="submit">Register</button>
+  </form>
+
+  {% if error %}
+    <p style="color:red">{{ error }}</p>
+  {% endif %}
+
+  <p>Already have an account? <a href="/">Login</a></p>
+</body>
+</html>

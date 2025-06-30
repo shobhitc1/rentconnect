@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel - Rent Connect</title>
+</head>
+<body>
+  <h1>Welcome, Admin</h1>
+
+  <h2>All Users</h2>
+  <table border="1">
+    <tr><th>Username</th><th>Password</th><th>Role</th></tr>
+    {% for user in users %}
+      <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.password }}</td>
+        <td>{{ user.role }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <h2>All Listings (Grouped by Owner)</h2>
+  {% for owner, owner_listings in listings_by_owner.items() %}
+    <h3>Owner: {{ owner }}</h3>
+    <table border="1">
+      <tr>
+        <th>Name</th><th>Address</th><th>Rent</th><th>Contact</th><th>Actions</th>
+      </tr>
+      {% for listing in owner_listings %}
+        <tr>
+          <td>{{ listing.name }}</td>
+          <td>{{ listing.address }}</td>
+          <td>{{ listing.rent }}</td>
+          <td>{{ listing.contact }}</td>
+          <td>
+            <a href="/admin/edit/{{ listing.id }}">Edit</a> |
+            <a href="/admin/delete/{{ listing.id }}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endfor %}
+
+  <br>
+  <a href="/logout">Logout</a>
+</body>
+</html>

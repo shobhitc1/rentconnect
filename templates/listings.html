@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Available Rentals</title>
+</head>
+<body>
+  <h1>Available Rooms and Shops</h1>
+
+  <form action="/listings" method="get">
+    <input type="text" name="q" placeholder="Search by city or type">
+    <button type="submit">Search</button>
+  </form>
+
+  <ul>
+    <table border="1" cellpadding="10">
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Rent</th>
+          <th>Contact</th>
+        </tr>
+        {% for item in listings %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.address }}</td>
+          <td>₹{{ item.rent }}</td>
+          <td>{{ item.contact }}</td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="4">No listings found.</td>
+        </tr>
+        {% endfor %}
+      </table>
+      
+  </ul>
+
+  <a href="/logout">Logout</a>
+
+</body>
+</html>
